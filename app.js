@@ -1,5 +1,6 @@
 import dot from 'dotenv'
 import express from 'express'
+import bodyParser from 'body-parser'
 
 import { indexRouter } from './routes/index.js'
 import { booksRouter } from './routes/books.js'
@@ -7,6 +8,7 @@ import { booksRouter } from './routes/books.js'
 dot.config()
 const app = express()
 app.use(express.json());
+app.use(bodyParser.json())
 
 app.use('/', indexRouter)
 app.use('/books/', booksRouter)
