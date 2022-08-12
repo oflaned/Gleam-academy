@@ -1,10 +1,14 @@
 import { errorToJson, outOfArray, toManyFields} from './../errors/errors.js'
 import { validationResult } from 'express-validator'
 import * as service from './../services/books.services.js'
-import { books } from './../services/books.services.js'
+
 export async function get(req, res, next) {
+    let books = await service.get()
+    if(books.length === 0) {
+        res.render('errors/getBooks')
+    }
     try {
-        return res.json(await service.get())
+        return res.render('pages/getBooks' , { books: books })
     } catch(err) {
         console.error('Error while output books array')
         next(err)
@@ -15,16 +19,24 @@ export async function getBook(req, res, next) {
 
     const errors = validationResult(req)
     if(!errors.isEmpty()) {
-        return res.status(400).json(errorToJson(errors))
+        return res.render('errors/getBook', {
+            numOfError: 400,
+            error: errorToJson(errors)
+        })
     }
 
     let bookId = Number(req.params.bookId)
-    if(bookId >= books.length) { 
-        res.status(404).json(outOfArray) 
+    if(bookId >= service.lengthOfBooks()) {
+        return res.render('errors/getBook', {
+            numOfError: 404,
+            error: outOfArray
+        })
+
     }
 
+    let book = await service.getBook(bookId)
     try {
-        return res.json(await service.getBook(bookId))
+        return res.render('pages/getBook', {book: book})
     } catch(err) {
         console.error('Error while output book')
         next(err)

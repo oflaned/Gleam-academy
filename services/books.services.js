@@ -1,4 +1,14 @@
-export let books = []
+let books = [
+    {
+        title: 'Book1',
+        description: 'keksh',
+        price: 100
+    }
+]
+
+export function lengthOfBooks(){
+    return books.length
+}
 
 export async function get() {
     return books

@@ -3,7 +3,7 @@ import express from 'express';
 export const indexRouter = express.Router();
 
 indexRouter.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.render('pages/index')
 })
 
 indexRouter.get('/health', (req, res) => {
