@@ -1,3 +1,6 @@
+#
+.DS_Store
+views/.DS_Store
 # Logs
 logs
 *.log

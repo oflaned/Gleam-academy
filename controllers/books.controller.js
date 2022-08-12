@@ -20,7 +20,6 @@ export async function getBook(req, res, next) {
     const errors = validationResult(req)
     if(!errors.isEmpty()) {
         return res.render('errors/getBook', {
-            numOfError: 400,
             error: errorToJson(errors)
         })
     }
@@ -28,7 +27,6 @@ export async function getBook(req, res, next) {
     let bookId = Number(req.params.bookId)
     if(bookId >= service.lengthOfBooks()) {
         return res.render('errors/getBook', {
-            numOfError: 404,
             error: outOfArray
         })
 
