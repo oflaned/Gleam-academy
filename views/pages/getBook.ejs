@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All books</title>
+    <title>Find Book</title>
     <style>
         table, th, td {
             border: 1px solid;
@@ -12,17 +12,21 @@
     </style>
 </head>
 <body>
-    <h1>All books:</h1>
+    <h1>Find Book:</h1>
     <table>
-    <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Price</th>
-    </tr>
-        <td><%= book.title %></td>
-        <td><%= book.description %></td>
-        <td><%= book.price %></td>
-    </tr>
+        <% if (book) { %>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+                <td><%= book.title %></td>
+                <td><%= book.description %></td>
+                <td><%= book.price %></td>
+            </tr>
+        <% } else { %> 
+            <h2> Book not found</h2>
+        <% } %> 
     </table>
 </body>
 </html>

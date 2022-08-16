@@ -1,37 +1,38 @@
 import express from 'express'
 import { checkSchema } from 'express-validator'
-import * as booksController from './../controllers/books.controller.js'
-import * as booksScema from '../schemas/books.Scmema.js'
 
-export const booksRouter = express.Router({ extended: true})
+import * as booksController from './../controllers/books.controller.js'
+import * as booksSceme from '../schemes/books.Scmeme.js'
+
+export const booksRouter = express.Router()
 
 booksRouter.get('/', 
     booksController.get
 )
 
 booksRouter.get('/:bookId',
-    checkSchema(booksScema.checkId),
+    checkSchema(booksSceme.checkId),
     booksController.getBook
 )
 
 booksRouter.post('/', 
-    checkSchema(booksScema.checkFields),
+    checkSchema(booksSceme.checkFields),
     booksController.post
 )
 
 booksRouter.put('/:bookId',
-    checkSchema(booksScema.checkId),
-    checkSchema(booksScema.checkFields),
+    checkSchema(booksSceme.checkId),
+    checkSchema(booksSceme.checkFields),
     booksController.put
 )
 
 booksRouter.delete('/:bookId', 
-    checkSchema(booksScema.checkId),
+    checkSchema(booksSceme.checkId),
     booksController.del
 )
 
 booksRouter.patch('/:bookId',
-    checkSchema(booksScema.checkId),
-    checkSchema(booksScema.checkOptionalFields), 
+    checkSchema(booksSceme.checkId),
+    checkSchema(booksSceme.checkOptionalFields), 
     booksController.patch
 )
