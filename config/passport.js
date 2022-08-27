@@ -1,17 +1,21 @@
 import localStrategy from "./strategies/local.strategy.js"
+import { users } from "../services/users.js"
 
 const passportConfig = (passport, app) => {
     app.use(passport.initialize())
     app.use(passport.session())
+
     passport.serializeUser((user, done) => {
-      console.log(`serialize ${user.id}`)
       done(null, user.id);
     })
   
     passport.deserializeUser((id, done) => {
-      console.log('deserialize')
-      if(id === 1)
-        done(null, { id: 1, name: 'Test', age: 21 })
+      if (id < users.length) {
+        done(null, {id: users[id].id, name: users[id].name })
+      }
+      else {
+        done('err')
+      }
     })
     localStrategy(passport)
     

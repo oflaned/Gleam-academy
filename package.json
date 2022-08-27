@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon app.js",
+    "dev": "nodemon --ignore sessions/ app.js",
     "start": "node app.js"
   },
   "type": "module",
@@ -11,6 +11,7 @@
   "author": "oflaned <misha122000@icloud.com>",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",

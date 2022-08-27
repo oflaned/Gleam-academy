@@ -10,6 +10,6 @@ authRouter.get('/login', (req, res) => {
 authRouter.post('/login',
     passport.authenticate('local', {
         successRedirect: '/books',
-        failureRedirect: '/login',
+        failureRedirect: '/auth/login',
     })
 )

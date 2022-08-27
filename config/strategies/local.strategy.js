@@ -1,20 +1,26 @@
 import { Strategy } from 'passport-local'
+import bcrypt from 'bcrypt'
+
+import { users } from '../../services/users.js'
 
 const localStrategy = (passport) => {
   passport.use(
     new Strategy({
-        usernameField: 'username',
+        usernameField: 'email',
         passwordField: 'password'
-    }, (username, password, done) => {
-      if (username !== '1')
+    }, async (email, password, done) => {
+      let user = users.find((user) => email === user.email)
+      if (user === undefined) {
         return done(null, false, {
-          message: 'User not found',
+          message: 'email not found',
         })
-      else if (password !== '1')
+      }
+      if (!(await bcrypt.compare(password, user.password))) {
         return done(null, false, {
           message: 'Wrong password',
         })
-      return done(null, { id: 1, name: 'Test', age: 21 })
+      }
+      return done(null, { id: user.id, name: user.name})
     })
   )
 }
