@@ -1,6 +1,6 @@
 export const error = (err, req, res, next) => {
     if (err.statusCode !== undefined) {
-        return res.render('error', {
+        return res.status(err.statusCode).render('error', {
             error: err
         })
     }

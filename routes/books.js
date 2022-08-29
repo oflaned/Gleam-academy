@@ -3,7 +3,7 @@ import { checkSchema } from 'express-validator'
 
 import { checkAuth } from './../middleware/checkAuth.js'
 import * as booksController from './../controllers/books.controller.js'
-import * as booksSceme from '../schemes/books.Scmeme.js'
+import * as booksSceme from '../schemes/books.Scheme.js'
 
 export const booksRouter = express.Router()
 
