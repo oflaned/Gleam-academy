@@ -3,7 +3,7 @@ import passport from 'passport'
 import session from 'express-session'
 import dot from 'dotenv'
 
-import { error } from './middleware/errors.js'
+import { error } from './errors/errors.middleware.js'
 import { sessionConfig } from './config/session.js'
 import { indexRouter } from './routes/index.js'
 import { booksRouter } from './routes/books.js'

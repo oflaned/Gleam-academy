@@ -1,7 +1,7 @@
 import express from 'express'
 import { checkSchema } from 'express-validator'
 
-import { checkAuth } from './../middleware/checkAuth.js'
+import { checkAuth } from '../controllers/checkAuth.js'
 import * as booksController from './../controllers/books.controller.js'
 import * as booksSceme from '../schemes/books.Scheme.js'
 
