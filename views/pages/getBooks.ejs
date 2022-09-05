@@ -1,39 +1,39 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All books</title>
-    <style>
-        table, th, td {
-            border: 1px solid;
-        }
-    </style>
-</head>
-<body>
-    <% if(books) { %>
-        <% if(books.length > 0) { %> 
-            <h1>All books:</h1>
-            <table>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>All books</title>
+        <style>
+            table,
+            th,
+            td {
+                border: 1px solid;
+            }
+        </style>
+    </head>
+    <body>
+        <% if(locals.books) { %> <% if(books.length > 0) { %>
+        <h1>All books:</h1>
+        <table>
             <tr>
                 <th>Title</th>
                 <th>Description</th>
                 <th>Price</th>
             </tr>
             <% books.forEach(function(books) { %>
-                <tr>
-                    <td><%= books.title %></td>
-                    <td><%= books.description %></td>
-                    <td><%= books.price %></td>
-                </tr>
+            <tr>
+                <td><%= books.title %></td>
+                <td><%= books.description %></td>
+                <td><%= books.price %></td>
+            </tr>
             <% }) %>
-            </table>
-        <% } else { %> 
-            <h1> Books array are empty </h1>
-        <% } %> 
-    <% } else { %>
+        </table>
+        <% } else { %>
+        <h1>Books array are empty</h1>
+        <% } %> <% } else { %>
         <h1>books are not defined</h1>
-    <% } %> 
-</body>
+        <% } %>
+    </body>
 </html>

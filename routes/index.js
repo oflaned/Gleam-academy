@@ -1,6 +1,6 @@
-import express from 'express';
+import express from 'express'
 
-export const indexRouter = express.Router();
+export const indexRouter = express.Router()
 
 indexRouter.get('/', (req, res) => {
     res.render('pages/index')

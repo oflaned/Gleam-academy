@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { urlencoded } from 'express'
 import passport from 'passport'
 import session from 'express-session'
 import dot from 'dotenv'
@@ -16,6 +16,7 @@ const port = process.env.PORT ? process.env.PORT : 8000
 const app = express()
 app.set('view engine', 'ejs')
 app.use(express.json())
+app.use(urlencoded({ extended: true }))
 app.use(session(sessionConfig))
 passportConfig(passport, app)
 

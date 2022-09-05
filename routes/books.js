@@ -7,35 +7,38 @@ import * as booksSceme from '../schemes/books.Scheme.js'
 
 export const booksRouter = express.Router()
 
-booksRouter.get('/', 
-    booksController.get
-)
+booksRouter.get('/', booksController.get)
 
-booksRouter.get('/:bookId',
+booksRouter.get(
+    '/:bookId',
     checkSchema(booksSceme.checkId),
     booksController.getBook
 )
 
-booksRouter.post('/', 
+booksRouter.post(
+    '/',
     checkAuth,
     checkSchema(booksSceme.checkFields),
     booksController.post
 )
 
-booksRouter.put('/:bookId',
+booksRouter.put(
+    '/:bookId',
     checkAuth,
     checkSchema(booksSceme.checkId),
     checkSchema(booksSceme.checkFields),
     booksController.put
 )
 
-booksRouter.delete('/:bookId',
-    checkAuth, 
+booksRouter.delete(
+    '/:bookId',
+    checkAuth,
     checkSchema(booksSceme.checkId),
     booksController.del
 )
 
-booksRouter.patch('/:bookId',
+booksRouter.patch(
+    '/:bookId',
     checkAuth,
     checkSchema(booksSceme.checkId),
     checkSchema(booksSceme.checkOptionalFields),

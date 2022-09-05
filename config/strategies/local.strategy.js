@@ -1,28 +1,23 @@
-import { Strategy } from 'passport-local'
 import bcrypt from 'bcrypt'
+import { Strategy } from 'passport-local'
 
 import { users } from '../../services/users.js'
+import { wrongLogin } from '../../errors/errors.js'
 
-const localStrategy = (passport) => {
-  passport.use(
-    new Strategy({
-        usernameField: 'email',
-        passwordField: 'password'
-    }, async (email, password, done) => {
-      let user = users.find((user) => email === user.email)
-      if (user === undefined) {
-        return done(null, false, {
-          message: 'email not found',
-        })
-      }
-      if (!(await bcrypt.compare(password, user.password))) {
-        return done(null, false, {
-          message: 'Wrong password',
-        })
-      }
-      return done(null, { id: user.id, name: user.name})
-    })
-  )
+const customFields = {
+    usernameField: 'email',
+    passwordField: 'password',
 }
 
-export default localStrategy
+const verifyCallBack = async (email, password, done) => {
+    let user = users.find((user) => email === user.email)
+    if (user === undefined) {
+        return done(wrongLogin)
+    }
+    if (!(await bcrypt.compare(password, user.password))) {
+        return done(wrongLogin)
+    }
+    return done(null, user)
+}
+
+export const localStrategy = new Strategy(customFields, verifyCallBack)

@@ -1,6 +1,4 @@
-export let books = [
-
-]
+export let books = []
 
 export async function get() {
     return books
@@ -27,9 +25,9 @@ export async function patch(book, bookId) {
 
 export async function del(bookId) {
     books.splice(bookId, 1)
-    return "OK"
+    return 'OK'
 }
 
-export function lengthOfBooks(){
+export function lengthOfBooks() {
     return books.length
 }
